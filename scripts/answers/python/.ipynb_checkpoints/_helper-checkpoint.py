@@ -8,7 +8,7 @@ question 2.
 
 User-defined functions:
     read_file(input_file: str, window_size: int): Read input file, return
-sequences.
+sequences and corresponding lines in a dictionary.
 
 Non-standard modules: none
 
@@ -29,24 +29,26 @@ Date: 2025-10-31
 Author: Oliver Todreas
 """
 
+
 # Define function
-def read_file(input_file: str, window_size: int):
+def read_file(input_file: str, window_size: int=None):
     """
     Read input file, append lines starting with '>' to the list sequences.
     Exit the program if a sequence is shorter than the window size or if a
     sequence contains invalid characters. Break the loop once all lines have
-    been read. If at least one sequence was found, return the list sequences.
+    been read. If at least one sequence was found, return the dictionary of
+    line numbers and sequences.
     """
     with open(input_file, "r") as f:
         i = 0
-        sequences = []
+        sequences_dict = {}
         valid_characters = {"A", "C", "G", "T", "N", "-"}
         while True:
             i += 1  # Use counter to keep track of line number
             line = f.readline()
             if line.startswith(">"):
                 sequence = line[1:].strip().upper()
-                if len(sequence) < window_size:
+                if window_size != None and len(sequence) < window_size:
                     sys.exit(
                         f"Sequence on line {i} is shorter than the window size {window_size}."
                     )
@@ -54,12 +56,12 @@ def read_file(input_file: str, window_size: int):
                 # The union of the sequence characters and valid characters does not match the valid characters.
                 if valid_characters != (valid_characters | set(sequence)):
                     sys.exit(f"Sequence on line {i} contains invalid characters.")
-                sequences.append(sequence)
+                sequences_dict[i] = sequence
 
             if not line:
                 break
 
-    if len(sequences) == 0:
+    if len(sequences_dict) == 0:
         sys.exit(f"No lines in '{input_file}' start with '>'. No sequences found.")
     else:
-        return sequences
+        return sequences_dict

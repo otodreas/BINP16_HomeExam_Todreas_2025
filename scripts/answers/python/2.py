@@ -99,12 +99,12 @@ def write_file(output_string: str, output_file: str):
 # Program logic
 if __name__ == "__main__":
     # Get sequences.
-    sequences = read_file(input_file, window_size)
+    sequences_dict = read_file(input_file, window_size)
     # If the file output_file already exists, remove it to avoid appending lines to an already created file.
     if os.path.isfile(output_file):
         os.remove(output_file)
 
-    for s in sequences:  # Loop through sequences, write data to output_file.
+    for s in sequences_dict.values():  # Loop through sequences, write data to output_file.
         seq = f"Sequence: {s}\n"
         win = f"Window size: {window_size}\n"
         gc = f"GC content (%): {gc_content(s, window_size)}\n"

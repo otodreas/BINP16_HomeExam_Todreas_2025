@@ -29,16 +29,24 @@ Date: 2025-10-31
 Author: Oliver Todreas
 """
 
+# Import libraries
+import os
+import sys
+
 
 # Define function
-def read_file(input_file: str, window_size: int = None):
+def read_file(input_file: str, metric_len: int):
     """
     Read input file, append lines starting with '>' to the list sequences.
-    Exit the program if a sequence is shorter than the window size or if a
-    sequence contains invalid characters. Break the loop once all lines have
-    been read. If at least one sequence was found, return the dictionary of
-    line numbers and sequences.
+    Exit the program if a sequence is shorter than the window size or motif or
+    if a sequence contains invalid characters. Break the loop once all lines
+    have been read. If at least one sequence was found, return the dictionary
+    of line numbers and sequences.
     """
+    try:
+        int(metric_len)  # metric_len is a window size.
+    except ValueError:
+        metric_len = len(metric_len)  # metric len is a motif.
     with open(input_file, "r") as f:
         i = 0
         sequences_dict = {}
@@ -48,9 +56,9 @@ def read_file(input_file: str, window_size: int = None):
             line = f.readline()
             if line.startswith(">"):
                 sequence = line[1:].strip().upper()
-                if window_size != None and len(sequence) < window_size:
+                if len(sequence) < metric_len:
                     sys.exit(
-                        f"Sequence on line {i} is shorter than the window size {window_size}."
+                        f"Sequence on line {i} is shorter than the window size/motif length {metric_len}."
                     )
 
                 # The union of the sequence characters and valid characters does not match the valid characters.
@@ -65,3 +73,19 @@ def read_file(input_file: str, window_size: int = None):
         sys.exit(f"No lines in '{input_file}' start with '>'. No sequences found.")
     else:
         return sequences_dict
+
+
+def output_file_enumerator(output_file):
+    """
+    Look for filenames that have the same format as output_file. If found,
+    append a suffix to output_file to avoid overwriting.
+    """
+    if os.path.isfile(output_file):
+        sep = output_file.index(".")
+        n_output_files = [
+            f for f in os.listdir() if f.startswith(output_file[:sep])
+        ]  # Find the number of files that match output_file (not including file extension).
+        output_file = (
+            output_file[:sep] + f"_{len(n_output_files) + 1}" + output_file[sep:]
+        )  # Ensure suffix gets added before the extension.
+    return output_file

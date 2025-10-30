@@ -33,6 +33,10 @@ The program addresses the following potential errors:
 Inputs: none
 
 Usage: ./2.py
+Since the inputs are hard coded for reproducibility, this program must be run
+from the correct directory. ENSURE that you have cd'd into the directory
+`root/scripts/answers/python`. If not, you will have to change the inputs in
+the inputs section.
 
 Version: 1.0
 Date: 2025-10-31
@@ -43,7 +47,7 @@ Author: Oliver Todreas
 import sys
 import os
 
-from _helper import read_file
+from _helper import read_file, output_file_enumerator
 
 
 # Hard code inputs for reproducibility (user may change at their own discression)
@@ -98,17 +102,19 @@ def write_file(output_string: str, output_file: str):
 
 # Program logic
 if __name__ == "__main__":
-    # Get sequences.
-    sequences_dict = read_file(input_file, window_size)
-    # If the file output_file already exists, add a suffix to the filename to avoid appending lines to an already created file.
-    if os.path.isfile(output_file):
-        output_files = [f for f in os.listdir() if f.startswith(output_file)]
-        sep = output_file.index(".")
-        output_file = (
-            output_file[:sep] + f"_{len(output_files) + 1}" + output_file[sep:]
-        )  # Ensure suffix gets added before the extension.
+    # Get sequences, check that the user is in the directory where the input file is stored.
+    try:
+        sequences_dict = read_file(input_file, window_size)
+    except FileNotFoundError:
+        sys.exit(
+            "File not found. Are you sure you're running this script from the folder 'root/scripts/answers/python'?"
+        )
 
-    for s in sequences_dict.values():  # Loop through sequences, write data to output_file.
+    output_file = output_file_enumerator(output_file)
+
+    for (
+        s
+    ) in sequences_dict.values():  # Loop through sequences, write data to output_file.
         seq = f"Sequence: {s}\n"
         win = f"Window size: {window_size}\n"
         gc = f"GC content (%): {gc_content(s, window_size)}\n"

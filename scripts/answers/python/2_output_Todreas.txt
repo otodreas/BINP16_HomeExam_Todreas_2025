@@ -1,6 +1,6 @@
 Sequence: TATATATATATACCCGAA
 Window size: 4
 GC content (%): [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 25.0, 50.0, 75.0, 100.0, 75.0, 50.0]
-Sequence: ACGTAGCAGTAC
+Sequence: ACGTATGCAGTATC
 Window size: 4
-GC content (%): [50.0, 50.0, 50.0, 50.0, 50.0, 75.0, 50.0, 25.0, 50.0]
+GC content (%): [50.0, 50.0, 25.0, 25.0, 50.0, 50.0, 75.0, 50.0, 25.0, 25.0, 25.0]

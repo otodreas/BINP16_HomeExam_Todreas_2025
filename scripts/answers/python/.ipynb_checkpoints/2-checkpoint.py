@@ -3,11 +3,11 @@
 """
 2.py (Question 2, BINP16 home exam)
 
-Description: Command line tool that takes input "2_input_Todreas.txt",
-containing sequences in FASTA format, producing output "2_output_Todreas.txt",
-containing GC content data within sliding windows of size 4. The variables
-"input_file", "window_size", and "output_file" are hard coded for
-reproducibility but can be changed
+Description: Command line tool that takes input "input_Todreas.txt", containing
+sequences in FASTA format, producing output "2_output_Todreas.txt", containing
+GC content data within sliding windows of size 4. The variables "input_file",
+"window_size", and "output_file" are hard coded for reproducibility but can be
+changed.
 
 User-defined functions:
     gc_content(sequence: str, window_size: int): Loop through a sequence,
@@ -47,7 +47,7 @@ from _helper import read_file
 
 
 # Hard code inputs for reproducibility (user may change at their own discression)
-input_file = "2_input_Todreas.txt"
+input_file = "input_Todreas.txt"
 window_size = 4
 output_file = "2_output_Todreas.txt"
 
@@ -100,9 +100,13 @@ def write_file(output_string: str, output_file: str):
 if __name__ == "__main__":
     # Get sequences.
     sequences_dict = read_file(input_file, window_size)
-    # If the file output_file already exists, remove it to avoid appending lines to an already created file.
+    # If the file output_file already exists, add a suffix to the filename to avoid appending lines to an already created file.
     if os.path.isfile(output_file):
-        os.remove(output_file)
+        output_files = [f for f in os.listdir() if f.startswith(output_file)]
+        sep = output_file.index(".")
+        output_file = (
+            output_file[:sep] + f"_{len(output_files) + 1}" + output_file[sep:]
+        )  # Ensure suffix gets added before the extension.
 
     for s in sequences_dict.values():  # Loop through sequences, write data to output_file.
         seq = f"Sequence: {s}\n"

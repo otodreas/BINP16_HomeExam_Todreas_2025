@@ -63,6 +63,7 @@ def find_motif(sequence, motif):
     """
     pass
 
+
 # Program logic
 if __name__ == "__main__":
     # Get sequences.

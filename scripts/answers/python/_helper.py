@@ -31,7 +31,7 @@ Author: Oliver Todreas
 
 
 # Define function
-def read_file(input_file: str, window_size: int=None):
+def read_file(input_file: str, window_size: int = None):
     """
     Read input file, append lines starting with '>' to the list sequences.
     Exit the program if a sequence is shorter than the window size or if a

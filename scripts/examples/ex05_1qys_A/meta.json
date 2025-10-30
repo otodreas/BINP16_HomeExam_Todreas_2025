@@ -1,0 +1,22 @@
+{
+  "pdb_id": "1QYS",
+  "chains_requested": [
+    "A"
+  ],
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/1QYS.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/1QYS/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/1QYS"
+  },
+  "checksums": {
+    "entry_structure_md5": "40799db80d06b7b5ecaa9fab2fd7c6ea",
+    "entry_fasta_md5": "9360e3f7203c4b7f56f732fba7593b21"
+  }
+}

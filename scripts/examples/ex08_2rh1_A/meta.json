@@ -1,0 +1,22 @@
+{
+  "pdb_id": "2RH1",
+  "chains_requested": [
+    "A"
+  ],
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/2RH1.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/2RH1/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/2RH1"
+  },
+  "checksums": {
+    "entry_structure_md5": "d98418853c46a464457445486696d70c",
+    "entry_fasta_md5": "0ca0eceec1d791bf277ff2b68eccb117"
+  }
+}

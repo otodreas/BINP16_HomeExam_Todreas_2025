@@ -1,0 +1,22 @@
+{
+  "pdb_id": "2OMF",
+  "chains_requested": [
+    "A"
+  ],
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/2OMF.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/2OMF/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/2OMF"
+  },
+  "checksums": {
+    "entry_structure_md5": "af663f1e1a1093d23091cb019ce3f5c9",
+    "entry_fasta_md5": "735983fa89f6dae7a5d387d3453ebb9b"
+  }
+}

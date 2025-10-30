@@ -1,0 +1,28 @@
+{
+  "pdb_id": "1A3N",
+  "chains_requested": [
+    "B"
+  ],
+  "chains_detected": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "fasta_chains_available": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/1A3N.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/1A3N/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/1A3N"
+  },
+  "checksums": {
+    "entry_structure_md5": "dae1112c7fb2560ba2cbe3c59abba280",
+    "entry_fasta_md5": "7e0e55253081fbb7dfb9bbf6aa342269"
+  }
+}

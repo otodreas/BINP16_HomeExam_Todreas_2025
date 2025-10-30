@@ -1,0 +1,28 @@
+{
+  "pdb_id": "4KRP",
+  "chains_requested": [
+    "B"
+  ],
+  "chains_detected": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "fasta_chains_available": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/4KRP.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/4KRP/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/4KRP"
+  },
+  "checksums": {
+    "entry_structure_md5": "6c560c6c04547c29b10f378cacc4c3d2",
+    "entry_fasta_md5": "7cabd010c9a482b6e2dcd9899c939800"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "pdb_id": "1YRF",
+  "chains_requested": [
+    "A"
+  ],
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/1YRF.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/1YRF/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/1YRF"
+  },
+  "checksums": {
+    "entry_structure_md5": "182acd999ec249993ac24784ff7b55e5",
+    "entry_fasta_md5": "8715493dc417d85fb62d0d33ca8c4a33"
+  }
+}

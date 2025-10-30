@@ -1,0 +1,22 @@
+{
+  "pdb_id": "1UBQ",
+  "chains_requested": [
+    "A"
+  ],
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/1UBQ.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/1UBQ/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/1UBQ"
+  },
+  "checksums": {
+    "entry_structure_md5": "51ddeedd4970ba5d372970719994aeea",
+    "entry_fasta_md5": "13f9528390de0d1c0d1433a621167d1e"
+  }
+}

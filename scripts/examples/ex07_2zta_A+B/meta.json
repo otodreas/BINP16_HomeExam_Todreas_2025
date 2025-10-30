@@ -1,0 +1,25 @@
+{
+  "pdb_id": "2ZTA",
+  "chains_requested": [
+    "A",
+    "B"
+  ],
+  "chains_detected": [
+    "A",
+    "B"
+  ],
+  "fasta_chains_available": [
+    "A",
+    "B"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/2ZTA.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/2ZTA/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/2ZTA"
+  },
+  "checksums": {
+    "entry_structure_md5": "572390e277b547f81425e65fee696a7e",
+    "entry_fasta_md5": "6b073cb1d7db5fc1a681118a8858b30f"
+  }
+}

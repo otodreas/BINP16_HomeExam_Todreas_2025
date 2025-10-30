@@ -1,0 +1,20 @@
+{
+  "pdb_id": "1CRN",
+  "chains_requested": null,
+  "chains_detected": [
+    "A"
+  ],
+  "fasta_chains_available": [
+    "A"
+  ],
+  "structure_format": "pdb",
+  "sources": {
+    "structure_url": "https://files.rcsb.org/download/1CRN.pdb",
+    "fasta_url": "https://www.rcsb.org/fasta/entry/1CRN/display?format=fasta",
+    "rcsb_entry": "https://www.rcsb.org/structure/1CRN"
+  },
+  "checksums": {
+    "entry_structure_md5": "525dbdc0188539e12121ac846ee0071b",
+    "entry_fasta_md5": "9100fc37d52a120ce747ad1b1947cc42"
+  }
+}

@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 
 """
-TODO: update
-
-
 3.py (Question 3, BINP16 home exam)
 
-Description: Command line tool that takes input "2_input_Todreas.txt",
-containing sequences in FASTA format, producing output "2_output_Todreas.txt",
-containing GC content data within sliding windows of size 4. The variables
-"input_file", "window_size", and "output_file" are hard coded for
-reproducibility but can be changed
+Description: Command line tool that takes input "input_Todreas.txt",
+containing sequences in FASTA format, producing outputs following the naming
+convention "3_output_linex.png", where line x refers to the line in the input
+file in which the sequence is found. The output file(s) are histograms plotting
+the abundance of the motif "motif" across the sequence.
 
 User-defined functions:
-    gc_content(sequence: str, window_size: int): Loop through a sequence,
-generating GC percentages on a sliding window of size window_size, return a
-list with all GC percentages generated.
-    write_file(output_string: str, output_file: str): Append the string
-output_string to the file output_file.
+    find_motif(sequence, motif): Loop through a sequence, gather indices where
+a given motif is found, return a list of hits as one-based indexes
+    plotter(hits, input_file, motif, sequence_key, output_file): Generate
+histograms of hits, set aesthetics using input_file, motif, and sequence_key,
+and save the plot, ensuring good file naming.
 
 Non-standard modules: matplotlib
 
@@ -30,22 +27,26 @@ Procedure:
 
 The program addresses the following potential errors:
     - Non-existent input file
+    - Invalid motif (plots not saved if motif is not found)
     - Non-.png output file
 
 Inputs: none
 
-Usage: ./3.py
-Since the inputs are hard coded for reproducibility, this program must be run
-from the correct directory. ENSURE that you have cd'd into the directory
-`root/scripts/answers/python`. If not, you will have to change the inputs in
-the inputs section.
+Usage: python3 ./3.py
+
+When asked for inputs, please leave them blank (ie hit Enter) to ensure
+reproducibility.
+
+This program must be run from the correct directory. ENSURE that you have cd'd
+into the directory `root/scripts/answers/python` when running. If not, you will
+have to change the inputs in the inputs section.
 
 Version: 1.0
 Date: 2025-10-31
 Author: Oliver Todreas
 """
 
-# Import libraries:
+# Import libraries
 import sys
 import os
 
@@ -57,10 +58,15 @@ except ModuleNotFoundError:
 from _helper import read_file, output_file_enumerator
 
 
-# Hard code inputs for reproducibility (user may change at their own discression)
-input_file = "input_Todreas.txt"
-motif = "at"
-output_file = "3_output_Todreas.png"
+# Get inputs, assign defaults
+input_file = input("Enter input file name (Leave blank for reproducibility) ")
+input_file = "input_Todreas.txt" if input_file == "" else input_file
+motif = input("Enter motif (Leave blank for reproducibility) ")
+motif = "at" if motif == "" else motif
+output_file = input(
+    "Enter output file naming template (Leave blank for reproducibility) "
+)
+output_file = "3_output_Todreas.png" if output_file == "" else output_file
 
 
 # Check for errors in variables
@@ -80,6 +86,7 @@ def find_motif(sequence, motif):
     sequence.
     """
     hits = []
+    # Ensure that no subsequences shorter than the motif by subtracting the motif length from the range through which the loop iterates.
     for i in range(len(sequence) - len(motif) + 1):
         frame = sequence[i : i + len(motif)]
         if frame == motif.upper():
@@ -88,7 +95,7 @@ def find_motif(sequence, motif):
     return hits
 
 
-def plotter(hits, input_file, motif, sequence_key, output_file):
+def plotter(hits, input_file, motif, sequence_key, sequence_value, output_file):
     """
     Create a histogram of motif hits if there are any hits for a given
     sequence. Handle file naming inside function, ensuring that files do not
@@ -96,12 +103,15 @@ def plotter(hits, input_file, motif, sequence_key, output_file):
     """
     if len(hits) > 0:
         fig, ax = plt.subplots()
-        ax.hist(hits)
-        ax.set_yticks(
-            [tick for tick in ax.get_yticks() if tick % 1 == 0]
-        )  # Since there can only be an integer number of hits, force y axis to be marked by integers.
-        ax.set_ylabel("Occurrence")
+        # Create histogram. Assign bin count to the length of the sequence unless it is too long.
+        ax.hist(hits, bins=len(sequence_value) if len(sequence_value) <= 20 else None)
+        # Ensure the entire sequence is represented on the x axis, regardless of hits.
+        ax.set_xlim(-0.5, len(sequence_value) - 0.5)
+        # Since positions and number of hits are integers, force axes to be marked by integers.
+        ax.set_xticks([int(xtick) for xtick in ax.get_xticks() if xtick % 1 == 0])
+        ax.set_yticks([int(ytick) for ytick in ax.get_yticks() if ytick % 1 == 0])
         ax.set_xlabel("Position in sequence")
+        ax.set_ylabel("Occurrence")
         fig.suptitle(
             f"Occurrences of motif {motif.upper()} in DNA sequence\non line {sequence_key} of file {input_file}"
         )
@@ -114,6 +124,9 @@ def plotter(hits, input_file, motif, sequence_key, output_file):
         )
         output_file = output_file_enumerator(output_file)
         fig.savefig(output_file)
+        print(
+            f"Hits for motif {motif.upper()} in sequence on line {sequence_key} of file {input_file}: {hits}"
+        )
 
     # Do not save plot if there are 0 hits for motif in sequence.
     else:
@@ -137,4 +150,4 @@ if __name__ == "__main__":
         hits = find_motif(
             sequences_dict.get(key), motif
         )  # Get hits with the dictionary key (sequence).
-        plotter(hits, input_file, motif, key, output_file)
+        plotter(hits, input_file, motif, key, sequences_dict.get(key), output_file)

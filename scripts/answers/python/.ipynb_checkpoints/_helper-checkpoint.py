@@ -7,8 +7,11 @@ Description: Helper file containing a function used for both question 1 and
 question 2.
 
 User-defined functions:
-    read_file(input_file: str, window_size: int): Read input file, return
-sequences and corresponding lines in a dictionary.
+    read_file(input_file, window_size): Read input file, return sequences and
+corresponding lines in a dictionary.
+    output_file_enumerator(output_file): Look through working directory, check
+if files already exist that match the output file name passed. If so, add a
+suffix to the name to prevent overwriting.
 
 Non-standard modules: none
 
@@ -35,7 +38,7 @@ import sys
 
 
 # Define function
-def read_file(input_file: str, metric_len: int):
+def read_file(input_file, metric_len):
     """
     Read input file, append lines starting with '>' to the list sequences.
     Exit the program if a sequence is shorter than the window size or motif or
@@ -44,9 +47,9 @@ def read_file(input_file: str, metric_len: int):
     of line numbers and sequences.
     """
     try:
-        int(metric_len) # metric_len is a window size.
+        int(metric_len)  # metric_len is a window size.
     except ValueError:
-        metric_len = len(metric_len) # metric len is a motif.
+        metric_len = len(metric_len)  # metric len is a motif.
     with open(input_file, "r") as f:
         i = 0
         sequences_dict = {}

@@ -32,28 +32,34 @@ The program addresses the following potential errors:
 
 Inputs: none
 
-Usage: ./2.py
-Since the inputs are hard coded for reproducibility, this program must be run
-from the correct directory. ENSURE that you have cd'd into the directory
-`root/scripts/answers/python`. If not, you will have to change the inputs in
-the inputs section.
+Usage: python3 ./2.py
+
+When asked for inputs, please leave them blank (ie hit Enter) to ensure
+reproducibility.
+
+This program must be run from the correct directory. ENSURE that you have cd'd
+into the directory `root/scripts/answers/python` when running. If not, you will
+have to change the inputs in the inputs section.
 
 Version: 1.0
 Date: 2025-10-31
 Author: Oliver Todreas
 """
 
-# Import libraries:
+# Import libraries
 import sys
 import os
 
 from _helper import read_file, output_file_enumerator
 
 
-# Hard code inputs for reproducibility (user may change at their own discression)
-input_file = "input_Todreas.txt"
-window_size = 4
-output_file = "2_output_Todreas.txt"
+# Get inputs, assign defaults
+input_file = input("Enter input file name (Leave blank for reproducibility) ")
+input_file = "input_Todreas.txt" if input_file == "" else input_file
+window_size = input("Enter window size (Leave blank for reproducibility) ")
+window_size = 5 if window_size == "" else window_size
+output_file = input("Enter output file naming template (Leave for reproducibility) ")
+output_file = "2_output_Todreas.txt" if output_file == "" else output_file
 
 
 # Check for errors in variables
@@ -73,7 +79,7 @@ if not output_file.endswith(".txt"):
 
 
 # Define functions
-def gc_content(sequence: str, window_size: int):
+def gc_content(sequence, window_size):
     """
     Loop through the nucleotides in sequences, and count the number of G & C
     nucleotides in the reading frame. Based on GC counts, calculate and round
@@ -81,7 +87,7 @@ def gc_content(sequence: str, window_size: int):
     Return the list when the end of the loop is reached.
     """
     gc_content_percentages = []
-    # Ensure that no subsequences shorter than the window size.
+    # Ensure that no subsequences shorter than the window size by subtracting the window size from the range through which the loop iterates.
     for i in range(len(sequence) - window_size + 1):
         frame = sequence[i : i + window_size]
         gc_count = frame.count("G") + frame.count("C")
@@ -91,7 +97,7 @@ def gc_content(sequence: str, window_size: int):
     return gc_content_percentages
 
 
-def write_file(output_string: str, output_file: str):
+def write_file(output_string, output_file):
     """
     Take the string output_string and append it to a file with the name
     output_file.

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 """
-2.py (Question 2, BINP16 home exam)
+TODO: update
+
+
+3.py (Question 3, BINP16 home exam)
 
 Description: Command line tool that takes input "2_input_Todreas.txt",
 containing sequences in FASTA format, producing output "2_output_Todreas.txt",
@@ -16,7 +19,7 @@ list with all GC percentages generated.
     write_file(output_string: str, output_file: str): Append the string
 output_string to the file output_file.
 
-Non-standard modules: none
+Non-standard modules: matplotlib
 
 Procedure:
     1. Import libraries
@@ -27,12 +30,11 @@ Procedure:
 
 The program addresses the following potential errors:
     - Non-existent input file
-    - Non-integer or 0 window size
-    - Non-.txt output file
+    - Non-.png output file
 
 Inputs: none
 
-Usage: ./2.py
+Usage: ./3.py
 Since the inputs are hard coded for reproducibility, this program must be run
 from the correct directory. ENSURE that you have cd'd into the directory
 `root/scripts/answers/python`. If not, you will have to change the inputs in
